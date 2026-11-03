@@ -15,3 +15,49 @@
 4- Explicada - Fazer um grupo a parte para analise
 
 
+Exercicio diagnostico_ausentes.py- O que foi encontrado:
+
+1 - Faltam valores conforme a seguir:
+area_m2               28
+idade_anos            63
+condicao              47
+distancia_praia_km    20
+Obs.: Pode se verificar a falta de valores mais acentuadamente para idade_anos e Condição
+
+
+2- Existem ausentes disfarçados conforme a seguir:
+
+condicao
+NaN     47
+Ruim    36
+N/D      5
+?        4
+
+Idade_anos minima
+-1.0
+
+area_m2
+s/i    5
+
+
+3- Verificando novamente os ausentes utilizando o na_values e replace temos o seguinte:
+
+area_m2               33
+idade_anos            69
+condicao              56
+distancia_praia_km    20
+
+Obs.: podemos observar um aumento de ausentes em todos os rotulos com exceção da distancia_praia_km.
+
+
+4- Agrupando os ausentes de idde_anos por tipo em porcentagem, temos: 
+
+Apartamento     8.1
+Casa           20.2
+Cobertura       2.8
+Studio          4.8
+
+Obs.: verificamos no tipo casa um valor bem maior de ausências.
+
+
+
