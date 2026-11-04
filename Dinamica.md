@@ -61,3 +61,10 @@ Obs.: verificamos no tipo casa um valor bem maior de ausências.
 
 
 
+# prever a saida 
+
+Primeira pergunta - [1.0,2.0,3.0,2.0]
+
+Segunda pergunta - 2.0 , 2, 2
+
+
