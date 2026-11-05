@@ -78,4 +78,9 @@ Segunda pergunta - 2.0 , 2, 2
 
 4- duplicata
 
+# REMOVER, LIMITAR OU MANTER?
 
+1- Se conhecer a fonte do erro, por exemplo constatar que a idade é 21 ao invés de 210, corrigir
+2- Manter, mas sinalizar
+3- Remover
+4- Transformar com log1p
