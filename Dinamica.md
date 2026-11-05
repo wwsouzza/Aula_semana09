@@ -68,3 +68,14 @@ Primeira pergunta - [1.0,2.0,3.0,2.0]
 Segunda pergunta - 2.0 , 2, 2
 
 
+# Duolicata ou não
+
+1- duplicata
+
+2- duplicata
+
+3- Depende - Pode ser que o cliente teve uma piora e voltou ao médico
+
+4- duplicata
+
+
