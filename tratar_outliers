@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+
+imoveis = pd.read_csv("imoveis_limpo.csv")
+
+# Tratamento de outliers com base em regras do negócio
+erros = (imoveis[ "area_m2"] > 2000) | (imoveis[ "preco"] < 10_000) | (imoveis[ "quartos"] >
+10)
+print(erros.sum(), "anúncios com erro de digitação" )
+tratado = imoveis[~erros].copy()
+print(len(imoveis), "->", len(tratado))
+
+# Função para calcular os limites inferior e superior de outliers usando o método do IQR
+
+def limites_iqr(serie, k=1.5):
+    q1, q3 = serie.quantile([0.25, 0.75])
+    iqr = q3 - q1
+    return q1 - k * iqr, q3 + k * iqr
+
+
+for col in ["preco"]:
+    baixo, alto = limites_iqr(imoveis[col])
+    n = ((imoveis[col] < baixo) | (imoveis[col] > alto)).sum()
+    print(f"{col:11s} {n:3d} fora de [{baixo:,.0f}; {alto:,.0f}]")
+
+# Calculando o z-score para a coluna "preco" e identificando outliers com |z| > 3
+
+baixo, alto = limites_iqr(tratado["preco"])
+tratado["preco_atipico"] = (tratado["preco"] > alto) | (tratado["preco"] <
+baixo)
+print(tratado["preco_atipico"].sum(), "preços atípicos, mantidos e sinalizados")
+print(tratado.groupby("preco_atipico")["preco"].median().round(0))
+
+# Comparando estatísticas antes e depois do tratamento de outliers
+
+tabela = pd.DataFrame({
+ "original": imoveis["area_m2"].agg(["mean", "median", "std", "max"]),
+ "sem erros": tratado["area_m2"].agg(["mean", "median", "std", "max"]),
+}).round(1)
+print(tabela)
+
+
+# Comparando a correlação entre área e preço antes e depois do tratamento de outliers
+com = imoveis[ "area_m2"].corr(imoveis[ "preco"])
+sem = tratado[ "area_m2"].corr(tratado[ "preco"])
+print(f"correlação área x preço com erros: {com:.2f} | sem erros: {sem:.2f}")
+
+# Salvando o arquivo tratado
+
+tratado.to_csv("imoveis_tratado.csv", index=False)
