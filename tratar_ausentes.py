@@ -12,3 +12,6 @@ for col in ["distancia_praia_km"]:
 imoveis["condicao"] = imoveis["condicao"].fillna(imoveis["condicao"].mode()[0])
 
 print(imoveis[["area_m2", "idade_anos", "distancia_praia_km","condicao"]].isna().sum())
+
+
+
