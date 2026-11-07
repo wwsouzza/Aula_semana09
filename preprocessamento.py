@@ -26,7 +26,7 @@ def limites_iqr(serie, k=1.5):
 def tratar_erros(df):
     """Remove erros de digitação e marca preços atípicos que são reais."""
     erros = (df["area_m2"] > 2000) | (df["preco"] < 10_000) | (df["quartos"] > 10)
-    df = df[~erros].copy()
+    df = df[~erros].copy()git pull
     baixo, alto = limites_iqr(df["preco"])
     df["preco_atipico"] = (df["preco"] > alto) | (df["preco"] < baixo)
     return df.reset_index(drop=True)
